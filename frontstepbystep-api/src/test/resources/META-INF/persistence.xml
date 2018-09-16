@@ -6,6 +6,9 @@
     <class>co.edu.uniandes.csw.bookstore.entities.BookEntity</class>
     <class>co.edu.uniandes.csw.bookstore.entities.EditorialEntity</class>
     <class>co.edu.uniandes.csw.bookstore.entities.ReviewEntity</class>
+    <class>co.edu.uniandes.csw.bookstore.entities.AuthorEntity</class>
+    <class>co.edu.uniandes.csw.bookstore.entities.PrizeEntity</class>
+    <class>co.edu.uniandes.csw.bookstore.entities.OrganizationEntity</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
  <shared-cache-mode>NONE</shared-cache-mode>
     <properties>

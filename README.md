@@ -1,4 +1,6 @@
 # backstepbystep
 
 # Tutorial Backend Desarrollo Web Tienda de Libros
-* Paso 2: Entidad Editorial CRUD
+* Paso 3 : Entidades: Editorial, Book
+* Paso 3 : Relaciones: Book-Editorial ,Editorial-Book
+

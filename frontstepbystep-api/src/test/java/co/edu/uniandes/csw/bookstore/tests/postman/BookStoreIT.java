@@ -96,9 +96,9 @@ public class BookStoreIT {
             }
         }
     }
-
+    
     @After
-    public void totalPeticiones() {
+    public void totalPeticiones(){
         Logger.getLogger(BookStoreIT.class.getName()).log(Level.INFO, "TOTAL-PETICIONES: {0}", sumaPeticiones);
     }
 }

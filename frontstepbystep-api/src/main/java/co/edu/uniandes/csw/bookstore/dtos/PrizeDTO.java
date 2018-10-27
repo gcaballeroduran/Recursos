@@ -23,9 +23,11 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.bookstore.dtos;
 
+import co.edu.uniandes.csw.bookstore.adapters.DateAdapter;
 import co.edu.uniandes.csw.bookstore.entities.PrizeEntity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -67,6 +69,7 @@ public class PrizeDTO implements Serializable {
 
     private Long id;
     private String name;
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date fechaEntrega;
     private String description;
 

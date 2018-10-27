@@ -21,11 +21,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
+
 package co.edu.uniandes.csw.bookstore.dtos;
 
+import co.edu.uniandes.csw.bookstore.adapters.DateAdapter;
 import co.edu.uniandes.csw.bookstore.entities.AuthorEntity;
 import java.io.Serializable;
 import java.util.Date;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -61,9 +64,11 @@ public class AuthorDTO implements Serializable {
 
     private Long id;
     private String name;
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date birthDate;
     private String description;
     private String image;
+   
 
     /**
      * Constructor vacio
@@ -85,6 +90,7 @@ public class AuthorDTO implements Serializable {
             this.birthDate = authorEntity.getBirthDate();
             this.description = authorEntity.getDescription();
             this.image = authorEntity.getImage();
+             
         }
     }
 
@@ -205,3 +211,5 @@ public class AuthorDTO implements Serializable {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 }
+
+ 

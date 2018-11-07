@@ -143,7 +143,7 @@ public class BookResource {
      */
     @PUT
     @Path("{booksId: \\d+}")
-    public BookDetailDTO updateBook(@PathParam("booksId") Long booksId, BookDTO book) throws BusinessLogicException {
+    public BookDetailDTO updateBook(@PathParam("booksId") Long booksId, BookDetailDTO book) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "BookResource updateBook: input: id: {0} , book: {1}", new Object[]{booksId, book.toString()});
         book.setId(booksId);
         if (bookLogic.getBook(booksId) == null) {

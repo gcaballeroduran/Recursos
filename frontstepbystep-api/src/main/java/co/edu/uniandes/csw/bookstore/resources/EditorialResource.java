@@ -77,14 +77,14 @@ public class EditorialResource {
      */
     @POST
     public EditorialDTO createEditorial(EditorialDTO editorial) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "EditorialResource createEditorial: input: {0}", editorial.toString());
+        LOGGER.log(Level.INFO, "EditorialResource createEditorial: input: {0}", editorial);
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         EditorialEntity editorialEntity = editorial.toEntity();
         // Invoca la lógica para crear la editorial nueva
         EditorialEntity nuevoEditorialEntity = editorialLogic.createEditorial(editorialEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         EditorialDTO nuevoEditorialDTO = new EditorialDTO(nuevoEditorialEntity);
-        LOGGER.log(Level.INFO, "EditorialResource createEditorial: output: {0}", nuevoEditorialDTO.toString());
+        LOGGER.log(Level.INFO, "EditorialResource createEditorial: output: {0}", nuevoEditorialDTO);
         return nuevoEditorialDTO;
     }
 
@@ -98,7 +98,7 @@ public class EditorialResource {
     public List<EditorialDetailDTO> getEditorials() {
         LOGGER.info("EditorialResource getEditorials: input: void");
         List<EditorialDetailDTO> listaEditoriales = listEntity2DetailDTO(editorialLogic.getEditorials());
-        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaEditoriales.toString());
+        LOGGER.log(Level.INFO, "EditorialResource getEditorials: output: {0}", listaEditoriales);
         return listaEditoriales;
     }
 
@@ -120,7 +120,7 @@ public class EditorialResource {
             throw new WebApplicationException("El recurso /editorials/" + editorialsId + " no existe.", 404);
         }
         EditorialDetailDTO detailDTO = new EditorialDetailDTO(editorialEntity);
-        LOGGER.log(Level.INFO, "EditorialResource getEditorial: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "EditorialResource getEditorial: output: {0}", detailDTO);
         return detailDTO;
     }
 
@@ -140,13 +140,13 @@ public class EditorialResource {
     @PUT
     @Path("{editorialsId: \\d+}")
     public EditorialDetailDTO updateEditorial(@PathParam("editorialsId") Long editorialsId, EditorialDetailDTO editorial) throws WebApplicationException {
-        LOGGER.log(Level.INFO, "EditorialResource updateEditorial: input: id:{0} , editorial: {1}", new Object[]{editorialsId, editorial.toString()});
+        LOGGER.log(Level.INFO, "EditorialResource updateEditorial: input: id:{0} , editorial: {1}", new Object[]{editorialsId, editorial});
         editorial.setId(editorialsId);
         if (editorialLogic.getEditorial(editorialsId) == null) {
             throw new WebApplicationException("El recurso /editorials/" + editorialsId + " no existe.", 404);
         }
         EditorialDetailDTO detailDTO = new EditorialDetailDTO(editorialLogic.updateEditorial(editorialsId, editorial.toEntity()));
-        LOGGER.log(Level.INFO, "EditorialResource updateEditorial: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "EditorialResource updateEditorial: output: {0}", detailDTO);
         return detailDTO;
 
     }

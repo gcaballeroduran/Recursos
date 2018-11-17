@@ -85,9 +85,9 @@ public class BookResource {
      */
     @POST
     public BookDTO createBook(BookDTO book) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "BookResource createBook: input: {0}", book.toString());
+        LOGGER.log(Level.INFO, "BookResource createBook: input: {0}", book);
         BookDTO nuevoBookDTO = new BookDTO(bookLogic.createBook(book.toEntity()));
-        LOGGER.log(Level.INFO, "BookResource createBook: output: {0}", nuevoBookDTO.toString());
+        LOGGER.log(Level.INFO, "BookResource createBook: output: {0}", nuevoBookDTO);
         return nuevoBookDTO;
     }
 
@@ -101,7 +101,7 @@ public class BookResource {
     public List<BookDetailDTO> getBooks() {
         LOGGER.info("BookResource getBooks: input: void");
         List<BookDetailDTO> listaBooks = listEntity2DetailDTO(bookLogic.getBooks());
-        LOGGER.log(Level.INFO, "BookResource getBooks: output: {0}", listaBooks.toString());
+        LOGGER.log(Level.INFO, "BookResource getBooks: output: {0}", listaBooks);
         return listaBooks;
     }
 
@@ -123,7 +123,7 @@ public class BookResource {
             throw new WebApplicationException("El recurso /books/" + booksId + " no existe.", 404);
         }
         BookDetailDTO bookDetailDTO = new BookDetailDTO(bookEntity);
-        LOGGER.log(Level.INFO, "BookResource getBook: output: {0}", bookDetailDTO.toString());
+        LOGGER.log(Level.INFO, "BookResource getBook: output: {0}", bookDetailDTO);
         return bookDetailDTO;
     }
 
@@ -144,13 +144,13 @@ public class BookResource {
     @PUT
     @Path("{booksId: \\d+}")
     public BookDetailDTO updateBook(@PathParam("booksId") Long booksId, BookDetailDTO book) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "BookResource updateBook: input: id: {0} , book: {1}", new Object[]{booksId, book.toString()});
+        LOGGER.log(Level.INFO, "BookResource updateBook: input: id: {0} , book: {1}", new Object[]{booksId, book});
         book.setId(booksId);
         if (bookLogic.getBook(booksId) == null) {
             throw new WebApplicationException("El recurso /books/" + booksId + " no existe.", 404);
         }
         BookDetailDTO detailDTO = new BookDetailDTO(bookLogic.updateBook(booksId, book.toEntity()));
-        LOGGER.log(Level.INFO, "BookResource updateBook: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "BookResource updateBook: output: {0}", detailDTO);
         return detailDTO;
     }
 

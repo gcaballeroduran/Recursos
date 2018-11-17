@@ -76,7 +76,7 @@ public class BookEditorialResource {
      */
     @PUT
     public BookDetailDTO replaceEditorial(@PathParam("booksId") Long booksId, EditorialDTO editorial) {
-        LOGGER.log(Level.INFO, "BookEditorialResource replaceEditorial: input: booksId{0} , Editorial:{1}", new Object[]{booksId, editorial.toString()});
+        LOGGER.log(Level.INFO, "BookEditorialResource replaceEditorial: input: booksId{0} , Editorial:{1}", new Object[]{booksId, editorial});
         if (bookLogic.getBook(booksId) == null) {
             throw new WebApplicationException("El recurso /books/" + booksId + " no existe.", 404);
         }
@@ -84,7 +84,7 @@ public class BookEditorialResource {
             throw new WebApplicationException("El recurso /editorials/" + editorial.getId() + " no existe.", 404);
         }
         BookDetailDTO bookDetailDTO = new BookDetailDTO(bookEditorialLogic.replaceEditorial(booksId, editorial.getId()));
-        LOGGER.log(Level.INFO, "BookEditorialResource replaceEditorial: output: {0}", bookDetailDTO.toString());
+        LOGGER.log(Level.INFO, "BookEditorialResource replaceEditorial: output: {0}", bookDetailDTO);
         return bookDetailDTO;
     }
 }

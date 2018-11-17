@@ -74,9 +74,9 @@ public class AuthorResource {
      */
     @POST
     public AuthorDTO createAuthor(AuthorDTO author) {
-        LOGGER.log(Level.INFO, "AuthorResource createAuthor: input: {0}", author.toString());
+        LOGGER.log(Level.INFO, "AuthorResource createAuthor: input: {0}", author);
         AuthorDTO authorDTO = new AuthorDTO(authorLogic.createAuthor(author.toEntity()));
-        LOGGER.log(Level.INFO, "AuthorResource createAuthor: output: {0}", authorDTO.toString());
+        LOGGER.log(Level.INFO, "AuthorResource createAuthor: output: {0}", authorDTO);
         return authorDTO;
     }
 
@@ -90,7 +90,7 @@ public class AuthorResource {
     public List<AuthorDetailDTO> getAuthors() {
         LOGGER.info("AuthorResource getAuthors: input: void");
         List<AuthorDetailDTO> listaAuthors = listEntity2DTO(authorLogic.getAuthors());
-        LOGGER.log(Level.INFO, "AuthorResource getAuthors: output: {0}", listaAuthors.toString());
+        LOGGER.log(Level.INFO, "AuthorResource getAuthors: output: {0}", listaAuthors);
         return listaAuthors;
     }
 
@@ -112,7 +112,7 @@ public class AuthorResource {
             throw new WebApplicationException("El recurso /authors/" + authorsId + " no existe.", 404);
         }
         AuthorDetailDTO detailDTO = new AuthorDetailDTO(authorEntity);
-        LOGGER.log(Level.INFO, "AuthorResource getAuthor: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "AuthorResource getAuthor: output: {0}", detailDTO);
         return detailDTO;
     }
 
@@ -131,13 +131,13 @@ public class AuthorResource {
     @PUT
     @Path("{authorsId: \\d+}")
     public AuthorDetailDTO updateAuthor(@PathParam("authorsId") Long authorsId, AuthorDetailDTO author) {
-        LOGGER.log(Level.INFO, "AuthorResource updateAuthor: input: authorsId: {0} , author: {1}", new Object[]{authorsId, author.toString()});
+        LOGGER.log(Level.INFO, "AuthorResource updateAuthor: input: authorsId: {0} , author: {1}", new Object[]{authorsId, author});
         author.setId(authorsId);
         if (authorLogic.getAuthor(authorsId) == null) {
             throw new WebApplicationException("El recurso /authors/" + authorsId + " no existe.", 404);
         }
         AuthorDetailDTO detailDTO = new AuthorDetailDTO(authorLogic.updateAuthor(authorsId, author.toEntity()));
-        LOGGER.log(Level.INFO, "AuthorResource updateAuthor: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "AuthorResource updateAuthor: output: {0}", detailDTO);
         return detailDTO;
     }
 

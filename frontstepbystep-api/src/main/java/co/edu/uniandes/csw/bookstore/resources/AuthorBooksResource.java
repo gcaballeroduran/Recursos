@@ -95,7 +95,7 @@ public class AuthorBooksResource {
     public List<BookDetailDTO> getBooks(@PathParam("authorsId") Long authorsId) {
         LOGGER.log(Level.INFO, "AuthorBooksResource getBooks: input: {0}", authorsId);
         List<BookDetailDTO> lista = booksListEntity2DTO(authorBookLogic.getBooks(authorsId));
-        LOGGER.log(Level.INFO, "AuthorBooksResource getBooks: output: {0}", lista.toString());
+        LOGGER.log(Level.INFO, "AuthorBooksResource getBooks: output: {0}", lista);
         return lista;
     }
 
@@ -136,14 +136,14 @@ public class AuthorBooksResource {
      */
     @PUT
     public List<BookDetailDTO> replaceBooks(@PathParam("authorsId") Long authorsId, List<BookDetailDTO> books) {
-        LOGGER.log(Level.INFO, "AuthorBooksResource replaceBooks: input: authorsId {0} , books {1}", new Object[]{authorsId, books.toString()});
+        LOGGER.log(Level.INFO, "AuthorBooksResource replaceBooks: input: authorsId {0} , books {1}", new Object[]{authorsId, books});
         for (BookDetailDTO book : books) {
             if (bookLogic.getBook(book.getId()) == null) {
                 throw new WebApplicationException("El recurso /books/" + book.getId() + " no existe.", 404);
             }
         }
         List<BookDetailDTO> lista = booksListEntity2DTO(authorBookLogic.replaceBooks(authorsId, booksListDTO2Entity(books)));
-        LOGGER.log(Level.INFO, "AuthorBooksResource replaceBooks: output: {0}", lista.toString());
+        LOGGER.log(Level.INFO, "AuthorBooksResource replaceBooks: output: {0}", lista);
         return lista;
     }
 

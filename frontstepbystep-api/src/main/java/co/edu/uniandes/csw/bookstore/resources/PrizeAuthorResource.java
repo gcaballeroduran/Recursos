@@ -82,7 +82,7 @@ public class PrizeAuthorResource {
             throw new WebApplicationException("El recurso /authors/" + authorsId + " no existe.", 404);
         }
         AuthorDTO authorDTO = new AuthorDTO(prizeAuthorLogic.addAuthor(authorsId, prizesId));
-        LOGGER.log(Level.INFO, "PrizeAuthorResource addAuthor: output: {0}", authorDTO.toString());
+        LOGGER.log(Level.INFO, "PrizeAuthorResource addAuthor: output: {0}", authorDTO);
         return authorDTO;
     }
 
@@ -103,7 +103,7 @@ public class PrizeAuthorResource {
             throw new WebApplicationException("El recurso /prizes/" + prizesId + "/author no existe.", 404);
         }
         AuthorDetailDTO authorDetailDTO = new AuthorDetailDTO(authorEntity);
-        LOGGER.log(Level.INFO, "PrizeAuthorResource getAuthor: output: {0}", authorDetailDTO.toString());
+        LOGGER.log(Level.INFO, "PrizeAuthorResource getAuthor: output: {0}", authorDetailDTO);
         return authorDetailDTO;
     }
 
@@ -126,7 +126,7 @@ public class PrizeAuthorResource {
             throw new WebApplicationException("El recurso /authors/" + authorsId + " no existe.", 404);
         }
         AuthorDetailDTO authorDetailDTO = new AuthorDetailDTO(prizeAuthorLogic.replaceAuthor(prizesId, authorsId));
-        LOGGER.log(Level.INFO, "PrizeAuthorResource replaceAuthor: output: {0}", authorDetailDTO.toString());
+        LOGGER.log(Level.INFO, "PrizeAuthorResource replaceAuthor: output: {0}", authorDetailDTO);
         return authorDetailDTO;
     }
 

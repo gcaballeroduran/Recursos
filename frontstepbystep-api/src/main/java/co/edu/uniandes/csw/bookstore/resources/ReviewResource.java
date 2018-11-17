@@ -73,9 +73,9 @@ public class ReviewResource {
      */
     @POST
     public ReviewDTO createReview(@PathParam("booksId") Long booksId, ReviewDTO review) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "ReviewResource createReview: input: {0}", review.toString());
+        LOGGER.log(Level.INFO, "ReviewResource createReview: input: {0}", review);
         ReviewDTO nuevoReviewDTO = new ReviewDTO(reviewLogic.createReview(booksId, review.toEntity()));
-        LOGGER.log(Level.INFO, "ReviewResource createReview: output: {0}", nuevoReviewDTO.toString());
+        LOGGER.log(Level.INFO, "ReviewResource createReview: output: {0}", nuevoReviewDTO);
         return nuevoReviewDTO;
     }
 
@@ -90,7 +90,7 @@ public class ReviewResource {
     public List<ReviewDTO> getReviews(@PathParam("booksId") Long booksId) {
         LOGGER.log(Level.INFO, "ReviewResource getReviews: input: {0}", booksId);
         List<ReviewDTO> listaDTOs = listEntity2DTO(reviewLogic.getReviews(booksId));
-        LOGGER.log(Level.INFO, "EditorialBooksResource getBooks: output: {0}", listaDTOs.toString());
+        LOGGER.log(Level.INFO, "EditorialBooksResource getBooks: output: {0}", listaDTOs);
         return listaDTOs;
     }
 
@@ -115,7 +115,7 @@ public class ReviewResource {
             throw new WebApplicationException("El recurso /books/" + booksId + "/reviews/" + reviewsId + " no existe.", 404);
         }
         ReviewDTO reviewDTO = new ReviewDTO(entity);
-        LOGGER.log(Level.INFO, "ReviewResource getReview: output: {0}", reviewDTO.toString());
+        LOGGER.log(Level.INFO, "ReviewResource getReview: output: {0}", reviewDTO);
         return reviewDTO;
     }
 
@@ -135,7 +135,7 @@ public class ReviewResource {
     @PUT
     @Path("{reviewsId: \\d+}")
     public ReviewDTO updateReview(@PathParam("booksId") Long booksId, @PathParam("reviewsId") Long reviewsId, ReviewDTO review) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "ReviewResource updateReview: input: booksId: {0} , reviewsId: {1} , review:{2}", new Object[]{booksId, reviewsId, review.toString()});
+        LOGGER.log(Level.INFO, "ReviewResource updateReview: input: booksId: {0} , reviewsId: {1} , review:{2}", new Object[]{booksId, reviewsId, review});
         if (reviewsId.equals(review.getId())) {
             throw new BusinessLogicException("Los ids del Review no coinciden.");
         }
@@ -145,7 +145,7 @@ public class ReviewResource {
 
         }
         ReviewDTO reviewDTO = new ReviewDTO(reviewLogic.updateReview(booksId, review.toEntity()));
-        LOGGER.log(Level.INFO, "ReviewResource updateReview: output:{0}", reviewDTO.toString());
+        LOGGER.log(Level.INFO, "ReviewResource updateReview: output:{0}", reviewDTO);
         return reviewDTO;
 
     }

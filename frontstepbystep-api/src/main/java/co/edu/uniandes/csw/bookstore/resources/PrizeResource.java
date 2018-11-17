@@ -81,9 +81,9 @@ public class PrizeResource {
      */
     @POST
     public PrizeDTO createPrize(PrizeDTO prize) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "PrizeResource createPrize: input: {0}", prize.toString());
+        LOGGER.log(Level.INFO, "PrizeResource createPrize: input: {0}", prize);
         PrizeDTO nuevoPrizeDTO = new PrizeDTO(prizeLogic.createPrize(prize.toEntity()));
-        LOGGER.log(Level.INFO, "PrizeResource createPrize: output: {0}", nuevoPrizeDTO.toString());
+        LOGGER.log(Level.INFO, "PrizeResource createPrize: output: {0}", nuevoPrizeDTO);
         return nuevoPrizeDTO;
     }
 
@@ -97,7 +97,7 @@ public class PrizeResource {
     public List<PrizeDetailDTO> getPrizes() {
         LOGGER.info("PrizeResource getPrizes: input: void");
         List<PrizeDetailDTO> listaPrizes = listEntity2DetailDTO(prizeLogic.getPrizes());
-        LOGGER.log(Level.INFO, "PrizeResource getPrizes: output: {0}", listaPrizes.toString());
+        LOGGER.log(Level.INFO, "PrizeResource getPrizes: output: {0}", listaPrizes);
         return listaPrizes;
     }
 
@@ -119,7 +119,7 @@ public class PrizeResource {
             throw new WebApplicationException("El recurso /prizes/" + prizesId + " no existe.", 404);
         }
         PrizeDetailDTO prizeDetailDTO = new PrizeDetailDTO(prizeEntity);
-        LOGGER.log(Level.INFO, "PrizeResource getPrize: output: {0}", prizeDetailDTO.toString());
+        LOGGER.log(Level.INFO, "PrizeResource getPrize: output: {0}", prizeDetailDTO);
         return prizeDetailDTO;
     }
 
@@ -140,13 +140,13 @@ public class PrizeResource {
     @PUT
     @Path("{prizesId: \\d+}")
     public PrizeDetailDTO updatePrize(@PathParam("prizesId") Long prizesId, PrizeDTO prize) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "PrizeResource updatePrize: input: prizesId: {0} , prize: {1}", new Object[]{prizesId, prize.toString()});
+        LOGGER.log(Level.INFO, "PrizeResource updatePrize: input: prizesId: {0} , prize: {1}", new Object[]{prizesId, prize});
         prize.setId(prizesId);
         if (prizeLogic.getPrize(prizesId) == null) {
             throw new WebApplicationException("El recurso /prizes/" + prizesId + " no existe.", 404);
         }
         PrizeDetailDTO detailDTO = new PrizeDetailDTO(prizeLogic.updatePrize(prizesId, prize.toEntity()));
-        LOGGER.log(Level.INFO, "PrizeResource updatePrize: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "PrizeResource updatePrize: output: {0}", detailDTO);
         return detailDTO;
     }
 

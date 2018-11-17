@@ -54,9 +54,9 @@ public class OrganizationResource {
      */
     @POST
     public OrganizationDTO createOrganization(OrganizationDTO organization) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "OrganizationResource createOrganization: input: {0}", organization.toString());
+        LOGGER.log(Level.INFO, "OrganizationResource createOrganization: input: {0}", organization);
         OrganizationDTO nuevoOrganizationDTO = new OrganizationDTO(organizationLogic.createOrganization(organization.toEntity()));
-        LOGGER.log(Level.INFO, "OrganizationResource createOrganization: output: {0}", nuevoOrganizationDTO.toString());
+        LOGGER.log(Level.INFO, "OrganizationResource createOrganization: output: {0}", nuevoOrganizationDTO);
         return nuevoOrganizationDTO;
     }
 
@@ -70,7 +70,7 @@ public class OrganizationResource {
     public List<OrganizationDetailDTO> getOrganizations() {
         LOGGER.info("OrganizationResource getOrganizations: input: void");
         List<OrganizationDetailDTO> listaOrganizations = listOrganizationEntity2DetailDTO(organizationLogic.getOrganizations());
-        LOGGER.log(Level.INFO, "OrganizationResource getOrganizations: output: {0}", listaOrganizations.toString());
+        LOGGER.log(Level.INFO, "OrganizationResource getOrganizations: output: {0}", listaOrganizations);
         return listaOrganizations;
     }
 
@@ -93,7 +93,7 @@ public class OrganizationResource {
             throw new WebApplicationException("El recurso /organizations/" + organizationsId + " no existe.", 404);
         }
         OrganizationDetailDTO organizationDetailDTO = new OrganizationDetailDTO(organizationEntity);
-        LOGGER.log(Level.INFO, "OrganizationResource getOrganization: output: {0}", organizationDetailDTO.toString());
+        LOGGER.log(Level.INFO, "OrganizationResource getOrganization: output: {0}", organizationDetailDTO);
         return organizationDetailDTO;
     }
 
@@ -113,13 +113,13 @@ public class OrganizationResource {
     @PUT
     @Path("{organizationsId: \\d+}")
     public OrganizationDTO updateOrganization(@PathParam("organizationsId") Long organizationsId, OrganizationDTO organization) {
-        LOGGER.log(Level.INFO, "OrganizationResource updateOrganization: input: id: {0} , organization: {1}", new Object[]{organizationsId, organization.toString()});
+        LOGGER.log(Level.INFO, "OrganizationResource updateOrganization: input: id: {0} , organization: {1}", new Object[]{organizationsId, organization});
         organization.setId(organizationsId);
         if (organizationLogic.getOrganization(organizationsId) == null) {
             throw new WebApplicationException("El recurso /organizations/" + organizationsId + " no existe.", 404);
         }
         OrganizationDetailDTO detailDTO = new OrganizationDetailDTO(organizationLogic.updateOrganization(organizationsId, organization.toEntity()));
-        LOGGER.log(Level.INFO, "OrganizationResource updateOrganization: output: {0}", detailDTO.toString());
+        LOGGER.log(Level.INFO, "OrganizationResource updateOrganization: output: {0}", detailDTO);
         return detailDTO;
     }
 

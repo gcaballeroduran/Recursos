@@ -29,27 +29,24 @@ import co.edu.uniandes.csw.bookstore.resources.EditorialResource;
 import co.edu.uniandes.csw.postman.tests.PostmanTestBuilder;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- *
+ *  Pruebas de integracion del recurso de Editorial.
  * @author ISIS2603
  */
 @RunWith(Arquillian.class)
-public class BookStoreIT {
+public class EditorialIT {
 
-    private int sumaPeticiones;
+    private static final String COLLECTION = "Editorial-Tests-Paso5.postman_collection";
 
     @Deployment(testable = true)
     public static WebArchive createDeployment() {
@@ -74,31 +71,15 @@ public class BookStoreIT {
     @Test
     @RunAsClient
     public void postman() throws IOException {
-        File[] colecciones = new File(System.getProperty("user.dir").concat("\\collections")).listFiles();
-        for (File coleccion : colecciones) {
-            if (!coleccion.getName().contains("postman_environment")) {
-                PostmanTestBuilder tp = new PostmanTestBuilder();
-                tp.setTestWithoutLogin(coleccion.getName().replaceFirst(".json", ""), "Entorno-IT.postman_environment");
-                String desiredResult = "0";
-                String nombre = coleccion.getName().replaceFirst(".postman_environment.json", "");
+        PostmanTestBuilder tp = new PostmanTestBuilder();
+        tp.setTestWithoutLogin(COLLECTION, "Entorno-IT.postman_environment");
+        String desiredResult = "0";
+        Assert.assertEquals("Error en Iterations de: " + COLLECTION, desiredResult, tp.getIterations_failed());
 
-                Assert.assertEquals("Error en Iterations de: " + nombre, desiredResult, tp.getIterations_failed());
+        Assert.assertEquals("Error en Requests de: " + COLLECTION, desiredResult, tp.getRequests_failed());
 
-                Assert.assertEquals("Error en Requests de: " + nombre, desiredResult, tp.getRequests_failed());
+        Assert.assertEquals("Error en Test-Scripts de: " + COLLECTION, desiredResult, tp.getTest_scripts_failed());
 
-                Assert.assertEquals("Error en Test-Scripts de: " + nombre, desiredResult, tp.getTest_scripts_failed());
-
-                Assert.assertEquals("Error en Prerequest-Scripts de: " + nombre, desiredResult, tp.getPrerequest_scripts_failed());
-
-                Assert.assertEquals("Error en Assertions de: " + nombre, desiredResult, tp.getAssertions_failed());
-
-                sumaPeticiones += Integer.parseInt(tp.getTotal_Requests());
-            }
-        }
-    }
-    
-    @After
-    public void totalPeticiones(){
-        Logger.getLogger(BookStoreIT.class.getName()).log(Level.INFO, "TOTAL-PETICIONES: {0}", sumaPeticiones);
+        Assert.assertEquals("Error en Assertions de: " + COLLECTION, desiredResult, tp.getAssertions_failed());
     }
 }

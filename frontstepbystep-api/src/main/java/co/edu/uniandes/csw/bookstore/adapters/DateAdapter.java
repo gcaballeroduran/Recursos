@@ -23,7 +23,6 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.bookstore.adapters;
 
-import co.edu.uniandes.csw.bookstore.resources.AuthorResource;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,7 +38,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
  */
 public class DateAdapter extends XmlAdapter<String, Date> {
     
-      private static final Logger LOGGER = Logger.getLogger(AuthorResource.class.getName());
+      private static final Logger LOGGER = Logger.getLogger(DateAdapter.class.getName());
 
     /**
      * Thread safe {@link DateFormat}.

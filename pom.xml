@@ -8,7 +8,7 @@
     <artifactId>backstepbystep</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-    <name>backstepbystep</name>
+    <name>Recursos</name>
  
     <modules>
         <module>backstepbystep-back</module>

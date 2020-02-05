@@ -9,7 +9,7 @@
     </parent>
     <artifactId>backstepbystep-back</artifactId>
     <packaging>jar</packaging>
-    <name>backstepbystep-back</name>
+    <name>recursos</name>
     
     <dependencies>
         <!-- Soporte Eclipselink -->
